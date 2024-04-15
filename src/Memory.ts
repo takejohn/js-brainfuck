@@ -1,9 +1,13 @@
 export class Memory {
     private static readonly INITIAL_SIZE = 1024;
 
-    private array = new Uint8Array(Memory.INITIAL_SIZE);
+    private array: Uint8Array;
 
     private pointer = 0;
+
+    constructor(initialSize: number = Memory.INITIAL_SIZE) {
+        this.array = new Uint8Array(initialSize);
+    }
 
     getValue(): number {
         return this.array[this.pointer];
