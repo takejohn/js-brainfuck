@@ -13,6 +13,10 @@ export class Memory {
         return this.array[this.pointer];
     }
 
+    setValue(value: number) {
+        this.array[this.pointer] = value;
+    }
+
     increaseValue(): void {
         const array = this.array;
         const pointer = this.pointer;

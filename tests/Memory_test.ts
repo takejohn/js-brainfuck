@@ -19,4 +19,4 @@ Deno.test('Memory instruction', () => {
     memory.decreasePointer();
     assertEquals(memory.getValue(), 1);
     assertThrows(() => memory.decreasePointer());
-})
+});
