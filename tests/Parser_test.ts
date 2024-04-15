@@ -1,36 +1,26 @@
 import { assertEquals, assertThrows } from '@std/assert';
-import { Parser } from '../src/Parser.ts';
-import {
-    Block,
-    DecreasePointer,
-    DecreaseValue,
-    IncreasePointer,
-    IncreaseValue,
-    LoopWhile,
-    Read,
-    Write,
-} from '../src/SyntaxTree.ts';
+import { Parser, SyntaxTree } from '../mod.ts';
 
 Deno.test('Parser', () => {
     const parser = new Parser();
     assertEquals(
         parser.parse('+-><,.'),
-        new Block([
-            IncreaseValue.instance,
-            DecreaseValue.instance,
-            IncreasePointer.instance,
-            DecreasePointer.instance,
-            Read.instance,
-            Write.instance,
+        new SyntaxTree.Block([
+            SyntaxTree.IncreaseValue.instance,
+            SyntaxTree.DecreaseValue.instance,
+            SyntaxTree.IncreasePointer.instance,
+            SyntaxTree.DecreasePointer.instance,
+            SyntaxTree.Read.instance,
+            SyntaxTree.Write.instance,
         ]),
     );
     assertEquals(
         parser.parse('+[-]'),
-        new Block([
-            IncreaseValue.instance,
-            new LoopWhile(
-                new Block([
-                    DecreaseValue.instance,
+        new SyntaxTree.Block([
+            SyntaxTree.IncreaseValue.instance,
+            new SyntaxTree.LoopWhile(
+                new SyntaxTree.Block([
+                    SyntaxTree.DecreaseValue.instance,
                 ]),
             ),
         ]),

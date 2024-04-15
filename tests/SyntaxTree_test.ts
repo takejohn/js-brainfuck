@@ -1,16 +1,5 @@
-import { Context } from '../src/Context.ts';
 import { assertEquals } from '@std/assert';
-import {
-    Block,
-    DecreasePointer,
-    DecreaseValue,
-    IncreasePointer,
-    IncreaseValue,
-    LoopWhile,
-    Node,
-    Read,
-    Write,
-} from '../src/SyntaxTree.ts';
+import { Context, SyntaxTree } from '../mod.ts';
 
 class TestContext extends Context {
     buffer?: number;
@@ -26,25 +15,29 @@ class TestContext extends Context {
 
 Deno.test('Simple instructions', async () => {
     const context = new TestContext();
-    IncreaseValue.instance.execute(context);
+    SyntaxTree.IncreaseValue.instance.execute(context);
     assertEquals(context.memory.getValue(), 1);
-    DecreaseValue.instance.execute(context);
+    SyntaxTree.DecreaseValue.instance.execute(context);
     assertEquals(context.memory.getValue(), 0);
-    DecreaseValue.instance.execute(context);
+    SyntaxTree.DecreaseValue.instance.execute(context);
     assertEquals(context.memory.getValue(), 255);
-    IncreasePointer.instance.execute(context);
+    SyntaxTree.IncreasePointer.instance.execute(context);
     assertEquals(context.memory.getValue(), 0);
-    DecreasePointer.instance.execute(context);
+    SyntaxTree.DecreasePointer.instance.execute(context);
     assertEquals(context.memory.getValue(), 255);
-    IncreaseValue.instance.execute(context);
+    SyntaxTree.IncreaseValue.instance.execute(context);
     assertEquals(context.memory.getValue(), 0);
-    await new Block(new Array<Node>(42).fill(IncreaseValue.instance))
+    await new SyntaxTree.Block(
+        new Array<SyntaxTree.Node>(42).fill(SyntaxTree.IncreaseValue.instance),
+    )
         .execute(context);
     assertEquals(context.memory.getValue(), 42);
-    await Read.instance.execute(context);
+    await SyntaxTree.Read.instance.execute(context);
     assertEquals(context.memory.getValue(), 21);
-    await Write.instance.execute(context);
+    await SyntaxTree.Write.instance.execute(context);
     assertEquals(context.buffer, 21);
-    await new LoopWhile(DecreaseValue.instance).execute(context);
+    await new SyntaxTree.LoopWhile(SyntaxTree.DecreaseValue.instance).execute(
+        context,
+    );
     assertEquals(context.memory.getValue(), 0);
 });
