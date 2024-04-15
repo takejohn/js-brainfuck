@@ -67,3 +67,19 @@ export class Write implements Node {
         await context.write(value);
     }
 }
+
+export class LoopWhile implements Node {
+    private readonly inner: Node;
+
+    constructor(inner: Node) {
+        this.inner = inner;
+    }
+
+    async execute(context: Context): Promise<void> {
+        const memory = context.memory;
+        const inner = this.inner;
+        while (memory.getValue() != 0) {
+            await inner.execute(context);
+        }
+    }
+}

@@ -6,6 +6,7 @@ import {
     DecreaseValue,
     IncreasePointer,
     IncreaseValue,
+    LoopWhile,
     Node,
     Read,
     Write,
@@ -44,4 +45,6 @@ Deno.test('Simple instructions', async () => {
     assertEquals(context.memory.getValue(), 21);
     await Write.instance.execute(context);
     assertEquals(context.buffer, 21);
+    await new LoopWhile(DecreaseValue.instance).execute(context);
+    assertEquals(context.memory.getValue(), 0);
 });
