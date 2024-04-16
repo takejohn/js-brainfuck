@@ -3,7 +3,13 @@
     "version": "0.1.0",
     "exports": "./mod.ts",
     "publish": {
-        "include": ["mod.ts", "src/**/*.ts"],
+        "include": [
+            "LICENSE",
+            "README.md",
+            "deno.jsonc",
+            "mod.ts",
+            "src/**/*.ts"
+        ],
         "exclude": ["tests/*"]
     },
     "tasks": {
