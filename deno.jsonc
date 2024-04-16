@@ -1,4 +1,11 @@
 {
+    "name": "@takejohn/brainfuck",
+    "version": "0.1.0",
+    "exports": "./mod.ts",
+    "publish": {
+        "include": ["mod.ts", "src/**/*.ts"],
+        "exclude": ["tests/*"]
+    },
     "tasks": {
         "test": "rm -rf cov_profile && deno test --coverage=cov_profile && deno coverage cov_profile --html"
     },

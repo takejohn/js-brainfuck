@@ -7,7 +7,7 @@ export abstract class Context {
     /**
      * The memory this context holds.
      */
-    public readonly memory = new Memory();
+    public readonly memory: Memory = new Memory();
 
     /**
      * Reads a byte from the input.

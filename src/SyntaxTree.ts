@@ -19,7 +19,7 @@ export class Block implements Node {
 }
 
 export class IncreaseValue implements Node {
-    public static readonly instance = new IncreaseValue();
+    public static readonly instance: IncreaseValue = new IncreaseValue();
 
     execute(context: Context): void {
         context.memory.increaseValue();
@@ -27,7 +27,7 @@ export class IncreaseValue implements Node {
 }
 
 export class DecreaseValue implements Node {
-    public static readonly instance = new DecreaseValue();
+    public static readonly instance: DecreaseValue = new DecreaseValue();
 
     execute(context: Context): void {
         context.memory.decreaseValue();
@@ -35,7 +35,7 @@ export class DecreaseValue implements Node {
 }
 
 export class IncreasePointer implements Node {
-    public static readonly instance = new IncreasePointer();
+    public static readonly instance: IncreasePointer = new IncreasePointer();
 
     execute(context: Context): void {
         context.memory.increasePointer();
@@ -43,7 +43,7 @@ export class IncreasePointer implements Node {
 }
 
 export class DecreasePointer implements Node {
-    public static readonly instance = new DecreasePointer();
+    public static readonly instance: DecreasePointer = new DecreasePointer();
 
     execute(context: Context): void {
         context.memory.decreasePointer();
@@ -51,7 +51,7 @@ export class DecreasePointer implements Node {
 }
 
 export class Read implements Node {
-    public static readonly instance = new Read();
+    public static readonly instance: Read = new Read();
 
     async execute(context: Context): Promise<void> {
         const value = await context.read();
@@ -60,7 +60,7 @@ export class Read implements Node {
 }
 
 export class Write implements Node {
-    public static readonly instance = new Write();
+    public static readonly instance: Write = new Write();
 
     async execute(context: Context): Promise<void> {
         const value = context.memory.getValue();
