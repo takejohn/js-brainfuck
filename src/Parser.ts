@@ -10,7 +10,15 @@ import {
     Write,
 } from './SyntaxTree.ts';
 
+/**
+ * An parser.
+ */
 export class Parser {
+    /**
+     * Parses a code.
+     * @param source The code to parse
+     * @returns The syntax tree
+     */
     parse(source: string): Node {
         let nodes: Node[] = [];
         const stack: Node[][] = [];

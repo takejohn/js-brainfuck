@@ -56,19 +56,36 @@ class InterpreterContext extends Context {
     }
 }
 
+/**
+ * An interpreter.
+ */
 export class Interpreter {
     private readonly parser = new Parser();
 
     private readonly context = new InterpreterContext();
 
+    /**
+     * Executes the code.
+     * @param source The code to execute
+     * @returns Will be resolved when the execution end
+     */
     execute(source: string): void | PromiseLike<void> {
         return this.parser.parse(source).execute(this.context);
     }
 
+    /**
+     * Inputs a byte
+     * @param value The byte to input
+     * @returns Will be resolved when the byte is read
+     */
     input(value: number): void | PromiseLike<void> {
         return this.context.input(value);
     }
 
+    /**
+     * Outputs a byte
+     * @returns Will be resolved with the written byte
+     */
     output(): number | PromiseLike<number> {
         return this.context.output();
     }
