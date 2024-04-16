@@ -1,12 +1,26 @@
 import type { Context } from './Context.ts';
 
+/**
+ * A node of a syntax tree.
+ */
 export interface Node {
+    /**
+     * Executes this node.
+     * @param context The context to execute over
+     */
     execute(context: Context): void | PromiseLike<void>;
 }
 
+/**
+ * A group of nodes.
+ */
 export class Block implements Node {
     private readonly nodes: Iterable<Node>;
 
+    /**
+     * Creates a block.
+     * @param nodes Nodes to be contained
+     */
     constructor(nodes: Iterable<Node>) {
         this.nodes = nodes;
     }
@@ -18,6 +32,9 @@ export class Block implements Node {
     }
 }
 
+/**
+ * A node for '+'.
+ */
 export class IncreaseValue implements Node {
     public static readonly instance: IncreaseValue = new IncreaseValue();
 
@@ -26,6 +43,9 @@ export class IncreaseValue implements Node {
     }
 }
 
+/**
+ * A node for '-'.
+ */
 export class DecreaseValue implements Node {
     public static readonly instance: DecreaseValue = new DecreaseValue();
 
@@ -34,6 +54,9 @@ export class DecreaseValue implements Node {
     }
 }
 
+/**
+ * A node for '>'.
+ */
 export class IncreasePointer implements Node {
     public static readonly instance: IncreasePointer = new IncreasePointer();
 
@@ -42,6 +65,9 @@ export class IncreasePointer implements Node {
     }
 }
 
+/**
+ * A node for '<'.
+ */
 export class DecreasePointer implements Node {
     public static readonly instance: DecreasePointer = new DecreasePointer();
 
@@ -50,6 +76,9 @@ export class DecreasePointer implements Node {
     }
 }
 
+/**
+ * A node for ','.
+ */
 export class Read implements Node {
     public static readonly instance: Read = new Read();
 
@@ -59,6 +88,9 @@ export class Read implements Node {
     }
 }
 
+/**
+ * A node for '.'.
+ */
 export class Write implements Node {
     public static readonly instance: Write = new Write();
 
@@ -68,6 +100,9 @@ export class Write implements Node {
     }
 }
 
+/**
+ * A node for '[', ']' and the content.
+ */
 export class LoopWhile implements Node {
     private readonly inner: Node;
 
