@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from '@std/assert';
-import { Memory } from '../mod.ts';
+import { Memory } from '../src/Memory.ts';
 
 Deno.test('Memory instruction', () => {
     const memory = new Memory(1);
